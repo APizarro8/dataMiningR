@@ -13,13 +13,13 @@ cat("Start time", format(startTime),"\n")
 
 ##DATOS DE ENTRADA 
 datos <- read.csv("XXXdataXXXX", sep=";")
-dim (madrid_10Z1)
-head (madrid_10Z1)
+dim (datos)
+head (datos)
 
 ##CORRELACION DE VARIABLES PREDICTORAS CONTINUAS 
-cor.matr = cor(madrid_10Z1[c(3:29)], method= c("pearson"))
+cor.matr = cor(datos[c(X:X)], method= c("pearson"))
 round (cor.matr, 4)
-write.csv(cor.matr, "D:/TFM_BIOMASA/FUSION/Correlaciones/Pearson_10Z1.csv")
+write.csv(cor.matr, "XXXdataXXXX")
 
 #
 #
