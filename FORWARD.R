@@ -1,6 +1,10 @@
-####################################################################################
-##########################REGRESION POR PASOS ######################################
-
+##########################################################################################
+##########################  REGRESION POR PASOS ##########################################
+#
+#TECNICA QUE COMIENZA CON UN PREDICTOR (MAYOR R2 PRESENTE) Y PARA CADA UNA DE LAS VARIABLES 
+#INDEPENDIENTES BAJO DISTRIBUCION NORMAL, RESULTANDO SER ELEGIDA LA QUE MENOS CONTRIBUYA 
+#Y ASÍ SEGUIDAMENTE HASTA QUE TODAS CONTRIBUYEN POR ENCIMA. 
+#
 #LIBRERIAS  
 library(leaps)
 
@@ -8,9 +12,9 @@ library(leaps)
 startTime <- Sys.time()
 cat("Start time", format(startTime),"\n")
 
-# ===================================================================================
+# ========================================================================================
 # REGRESION POR PASOS HACIA DELANTE (FORWARD)
-# ===================================================================================
+# ========================================================================================
 
 ##DATOS DE ENTRADA 
 datos <- read.csv("XXXXXXX", sep=";")
