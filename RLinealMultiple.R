@@ -14,7 +14,7 @@ cat("Start time", format(startTime),"\n")
 # ================================================================================================================
 
 ##Lectura de datos 
-datos <- read.csv("D:/TFM_BIOMASA/INVENTARIOS_FORESTALES/BIOMASA/AGB_16Z1/AGB_16Z1_SET_STEP_CONMAT.csv", sep=";")
+datos <- read.csv("XXXXXXX.csv", sep=";")
 names(datos)
 pairs(datos)
 
@@ -29,12 +29,12 @@ anova(datos)
 # ================================================================================================================
 
 ##ENTRADA PARAMETROS DE EVALUACION
-datos <- read.csv("D:/TFM_BIOMASA/INVENTARIOS_FORESTALES/BIOMASA/AGB_16Z1/AGB_16Z1_SET_STEP_CONMAT.csv", sep=";")
+datos <- read.csv("XXXXXXX.csv", sep=";")
 dim (datos)
 
 ##Modelo de regresion lineal
 #Ajustar variables entrada
-lm.mod <- lm ( Bio ~ HVAR + FCC, data = datos)
+lm.mod <- lm ( VARDEP ~ VARINDEP + VARINDEP, data = datos)
 
 #Prediccion
 #Ajustar variables entrada
@@ -42,7 +42,7 @@ pred.lm = predict ( lm.mod, newdata=datos )
 
 #Evaluacion
 #Ajustar variables entrada
-EvalRegr ( datos$Bio, pred.lm )
+EvalRegr ( datos$VARDEPEN, pred.lm )
 
 
 print(summary(lm.mod))
@@ -52,7 +52,7 @@ print(summary(lm.mod))
 
 ## ENTRADA GRAFICOS DE DIAGNOSTICO
 ##Grafico de diagnostico
-DiagPlot ( datos$Bio, pred.lm , main="BIOMASA (ton/ha)" )
+DiagPlot ( datos$VARDEPEN, pred.lm , main="XXXXXXX" )
 
 
 # ===================================================================================================================
@@ -110,13 +110,11 @@ DiagPlot = function ( obs, pred, ... )
 }
 
 
-
-
 #
 #
 #Calculando tiempo de procesamiento
 timeDiff <- Sys.time() - startTime
 cat("\nEl tiempo de procesamiento es de ", format(timeDiff), "\n")
 
-################################### FINISHED RUN ####################################################################
+####################################### FINISHED RUN ################################################################
 #####################################################################################################################
