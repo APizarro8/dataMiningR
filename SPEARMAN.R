@@ -3,7 +3,7 @@
 ############################# Coeficientes de Spearman ###################################
 
 #TECNICA UTILIZADA PARA VER EL GRADO DE CORRELACION ENTRE LA VARIABLE DEPENDIENTE 
-#Y CADA UNA DE LAS INDEPENDIENTES
+#CON CADA UNA DE LAS VARIABLES INDEPENDIENTES DEL MODELO
 
 #Descargar librerias
 require(corrplot)
