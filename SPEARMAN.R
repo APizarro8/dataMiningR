@@ -1,16 +1,20 @@
-#####################################################################################################
+##########################################################################################
+
+############################# Coeficientes de Spearman ###################################
+
+#TECNICA UTILIZADA PARA VER EL GRADO DE CORRELACION ENTRE LA VARIABLE DEPENDIENTE 
+#Y CADA UNA DE LAS INDEPENDIENTES
+
 #Descargar librerias
 require(corrplot)
 library(pspearman)
 
-#############################   ANALISIS COMPONENTES PRINCIPALES ###################################
-
-##Variables LiDAR a correlacionar
+##Variables a correlacionar
 namevar <- read.csv("XXXXX.csv", sep=";")
 dim (namevar)
 head (namevar)
 
 cor(rank(namevar[,1]),rank(namevar[,2]))
 
-################################### FINISHED RUN ####################################################
-#####################################################################################################
+################################### FINISHED RUN #########################################
+##########################################################################################
