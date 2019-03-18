@@ -10,17 +10,17 @@ startTime <- Sys.time()
 cat("Start time", format(startTime),"\n")
 
 # ================================================================================================================
-# ENTRADA DE DATOS PARA LA REGRESION LINEAL 
+# ENTRADA DE DATOS PARA LA REGRESION LINEAL MULTIPLE
 # ================================================================================================================
 
 ##Lectura de datos 
-datos <- read.csv("XXXXXXX.csv", sep=";")
+datos <- read.csv("XXXdataXXXX.csv", sep=";")
 names(datos)
 pairs(datos)
 
 
 ##Formula RLM
-regresion <- lm( Bio ~ HVAR + FCC, data = datos)
+regresion <- lm( VarDep ~ VarIndep + VarIndep, data = datos)
 summary(regresion)
  
 ##Analisis de la tabla de varianza
@@ -29,12 +29,12 @@ anova(datos)
 # ================================================================================================================
 
 ##ENTRADA PARAMETROS DE EVALUACION
-datos <- read.csv("XXXXXXX.csv", sep=";")
+datos <- read.csv("XXXdataXXXX.csv", sep=";")
 dim (datos)
 
 ##Modelo de regresion lineal
 #Ajustar variables entrada
-lm.mod <- lm ( VARDEP ~ VARINDEP + VARINDEP, data = datos)
+lm.mod <- lm ( VarDep ~ VarIndep + VarIndep, data = datos)
 
 #Prediccion
 #Ajustar variables entrada
@@ -42,7 +42,7 @@ pred.lm = predict ( lm.mod, newdata=datos )
 
 #Evaluacion
 #Ajustar variables entrada
-EvalRegr ( datos$VARDEPEN, pred.lm )
+EvalRegr ( datos$VarDep, pred.lm )
 
 
 print(summary(lm.mod))
@@ -52,7 +52,7 @@ print(summary(lm.mod))
 
 ## ENTRADA GRAFICOS DE DIAGNOSTICO
 ##Grafico de diagnostico
-DiagPlot ( datos$VARDEPEN, pred.lm , main="XXXXXXX" )
+DiagPlot ( datos$VarDep, pred.lm , main="XXXdataXXXX" )
 
 
 # ===================================================================================================================
