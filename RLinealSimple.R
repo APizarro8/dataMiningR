@@ -12,12 +12,12 @@ cat("Start time", format(startTime),"\n")
 # =====================================================================================================
 
 ##ENTRADA DATOS REGRESION LINEAL
-datos <- read.csv("D:/TFM_BIOMASA/INVENTARIOS_FORESTALES/BIOMASA/AGB_10Z2/AGB_10Z2_X.csv", sep=";")
+datos <- read.csv("xxxxdataxxx", sep=";")
 names(datos)
 
 ##Modelo de regresion lineal
 #Ajustar variables entrada
-datos <- lm( log(Bio) ~ log(X) , data = datos)
+datos <- lm(VarDep) ~ (VarIndep) , data = datos)
 summary(datos)
 
 ##Analisis de la tabla de varianza
@@ -26,30 +26,30 @@ anova(datos)
 # =====================================================================================================
   
 ##ENTRADA PARAMETROS DE EVALUACION
-datos <- read.csv("D:/TFM_BIOMASA/INVENTARIOS_FORESTALES/BIOMASA/AGB_10Z2/AGB_10Z2_X.csv", sep=";")
+datos <- read.csv("xxxxdataxxx", sep=";")
 dim (datos)
 
 ##Modelo de regresion lineal
 #Ajustar variables entrada
-lm.mod <- lm(Bio ~ X , data = datos)
+lm.mod <- lm(VarDep ~ VarIndep , data = datos)
 
 #Prediccion
 pred.lm = predict ( lm.mod, newdata=datos )
 
 #Evaluacion
 #Ajustar variables entrada
-EvalRegr ( datos$Bio, pred.lm )
+EvalRegr ( datos$VarDep, pred.lm )
 
 # =====================================================================================================
 
 ## ENTRADA GRAFICOS DE DIAGNOSTICO
 #Ajustar variables entrada
-DiagPlot ( datos$Bio, pred.lm , main="BIOMASA (ton/ha)" )
+DiagPlot ( datos$VarDep, pred.lm , main="Vardep" )
 
 ##Otra forma grafica
 #Ajustar variables entrada
 dev.new()
-ggplot(datos, aes(x=Bio, y=X)) +
+ggplot(datos, aes(x=VarDep, y=VarIndep)) +
   geom_point(shape=1) +   
   geom_smooth(method=lm)   # adjunta la linea de regresion por defecto es al 95% de confianza 
 
@@ -114,5 +114,5 @@ timeDiff <- Sys.time() - startTime
 cat("\nEl tiempo de procesamiento es de ", format(timeDiff), "\n")
 
 
-################################### FINISHED RUN ####################################################
-####################################################################################################
+######################################### FINISHED RUN ##############################################
+#####################################################################################################
