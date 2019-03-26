@@ -1,5 +1,5 @@
-###########################################################################################################
-#### COMPROBACION DE LOS SUPUESTOS DE LA HIPOTESIS LINEAL  ##################################################
+########################################################################################################
+####################### COMPROBACION DE LOS SUPUESTOS DE HIPOTESIS LINEAL  #############################
 
 #Descargar librerias
 library(ggplot2)
@@ -9,19 +9,21 @@ library(lmtest)
 library(corrplot)
 library(dplyr)
 
+# Start processing
+startTime <- Sys.time()
+cat("Start time", format(startTime),"\n")
 
-# ========================================================================================================
+# ====================================================================================================
 # ENTRADA DE DATOS PARA LA REGRESION 
-# ========================================================================================================
+# ====================================================================================================
 
 ##Lectura de datos 
-datos <- read.csv("D:/TFM_BIOMASA/INVENTARIOS_FORESTALES/BIOMASA/AGB_16Z1/AGB_16Z1_X_FCC.csv", sep=";")
+datos <- read.csv("xxxxxDATAXXXX", sep=";")
 names(datos)
-
 
 ##Modelo de regresion potencial
 ### Modificaré la regresion por esta nueva definición
-regresion = lm(log(Bio) ~ log(X), data = datos)
+regresion = lm varDep ~ varIndep, data = datos)
 summary(regresion)
 
 ##Analisis de la tabla de varianza
@@ -31,19 +33,15 @@ anova(regresion)
 confint(regresion)
 confint(regresion,level = 0.90)
 
-
-
-# ========================================================================================================
+# ===================================================================================================
 # Diagnóstico del modelo 
-# =======================================================================================================
+# ===================================================================================================
 
 # Normalidad
 ## Distribución normal de los residuos 
 qqnorm (regresion$residuals)
 qqline (regresion$residuals)
-
 shapiro.test(regresion$residuals)
-
 
 # Homocedasticidad  O IGUALDAD DE VARIANZAS
 ## variabilidad constante de los residuos
@@ -54,7 +52,6 @@ geom_hline(yintercept = 0) +
 theme_bw()
 
 bptest(regresion, studentize = TRUE, data = list())
-
 bptest(regresion)
 
 ## Matriz de correlacion entre predictores
@@ -84,10 +81,12 @@ ggplot(data = datos, aes(x = predict(regresion), y = abs(studentized_residual)))
 
 which(abs(datos$studentized_residual) > 3)
 
+#
+#
+# Calculando tiempo de procesamiento
+timeDiff <- Sys.time() - startTime
+cat("\nEl tiempo de procesamiento es de ", format(timeDiff), "\n")
 
-################################### FINISHED RUN ########################################
-#########################################################################################
 
-
-
-
+######################################### FINISHED RUN ##########################################
+#################################################################################################
