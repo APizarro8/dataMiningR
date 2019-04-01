@@ -1,20 +1,22 @@
 ################################################################################################################
-############################## TRANSFORMACION LOGARITMICA  ####################################
+######################################### TRANSFORMACION LOGARITMICA  ##########################################
+
+##LIBRERIAS 
 library(car)
 library (MASS)
 require(nnet)
-library(labstatR)  # librer ́ıa que calcula la media geom ́etrica
+library(labstatR)  #calcula la media geometrica
 
 # =============================================================================================================
 # ENTRADA DE DATOS 
 # =============================================================================================================
 
 ##Lectura de datos 
-datos <- read.csv("D:/TFM_BIOMASA/INVENTARIOS_FORESTALES/BIOMASA/AGB_16Z2/AGB_16Z2_SET_STEP.csv", sep=";")
+datos <- read.csv("xxxxDATAxxxx", sep=";")
 names(datos)
 
 ##Formula RLM
-regresion <- lm( Bio ~ HMAX + X + FCC, data = datos)
+regresion <- lm( varDep ~ varIndep + varIndep + varIndep, data = datos)
 summary(regresion)
 
 # y un test de normalidad
@@ -23,10 +25,10 @@ shapiro.test(rstandard(regresion))
 # y un test de HOMOCEDATICIDAD
 bptest(regresion, studentize = TRUE, data = list())
 
-##ANALISIS DE INFLACION DE VARIANZA (VIF)
+## ANALISIS DE INFLACION DE VARIANZA (VIF)
 vif(regresion)
 
-# Buscamos el valor de lambda para la transformaci ́on:
+# Buscamos el valor de lambda para la transformacion:
 par(mfrow=c(1,1))
 boxCox(regresion)
 
@@ -42,17 +44,14 @@ lambda<-bc$x[which.max(bc$y)]; lambda #=0.3
 BioAdj <- (Bio^lambda-1)/(lambda*meang(Bio)^(lambda-1))
 
 # y el nuevo ajuste con dicha variable
-regresion.bc <-lm ( BioAdj ~ HMAX + X + FCC , data=datos)
+regresion.bc <-lm ( varDepAdj ~ varIndep1 + varIndep2, data=datos)
 
 # cuyo diagn ́ostico gr ́afico resultante es:
 opar<-par(mfrow=c(2,2))
-
-
 summary(regresion.bc)
 
 ##ANALISIS DE INFLACION DE VARIANZA (VIF)
 vif(regresion.bc)
-
 
 # y un test de HOMOCEDATICIDAD
 bptest(regresion.bc, studentize = TRUE, data = list())
